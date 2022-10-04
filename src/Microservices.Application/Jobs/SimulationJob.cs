@@ -63,6 +63,7 @@ public sealed class SimulationJob : IJob
         {
             var transaction =  transactions[simulationTask.TransactionTrackingId];
             transaction.Status = simulationTask.NewStatus;
+            transaction.UsdFeeAmount = simulationTask.NewFeeAmount;
             await _transactionRepository.ReplaceOne(transaction);
         }
         

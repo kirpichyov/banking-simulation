@@ -61,6 +61,7 @@ public sealed class SimulationTasksService : ISimulationTasksService
             TransactionTrackingId = transaction.TrackingId,
             NewStatus = TransactionStatus.Completed,
             CanBeSentAtUtc =  GetSendDate(),
+            NewFeeAmount = GetRandomFee(),
         };
     }
 
@@ -72,10 +73,12 @@ public sealed class SimulationTasksService : ISimulationTasksService
             NewStatus = TransactionStatus.Failed,
             CanBeSentAtUtc = GetSendDate(),
             FailReason = FailReasons[_random.Next(0, FailReasons.Length)],
+            NewFeeAmount = GetRandomFee(),
         };
     }
 
     private bool IsFailed() => _random.Next(0, 100) < _simulationOptions.FailureChance;
+    private decimal GetRandomFee() => ((decimal)_random.Next(0, 10) / 10);
 
     private DateTime GetSendDate()
     {

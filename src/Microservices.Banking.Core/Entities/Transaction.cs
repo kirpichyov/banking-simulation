@@ -20,4 +20,6 @@ public sealed class Transaction : DocumentBase
     public TransactionStatus Status { get; set; }
     
     public string FailReason { get; set; }
+    
+    public decimal UsdFeeAmount { get; set; }
 }

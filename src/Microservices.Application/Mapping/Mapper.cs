@@ -25,6 +25,7 @@ public sealed class Mapper : IMapper
             CardFrom = transaction.CardFrom,
             FailReason = transaction.FailReason,
             UsdAmount = transaction.UsdAmount,
+            UsdFeeAmount = transaction.UsdFeeAmount,
         };
     }
 

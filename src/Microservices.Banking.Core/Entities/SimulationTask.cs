@@ -14,4 +14,5 @@ public sealed class SimulationTask : DocumentBase
     
     public DateTime CanBeSentAtUtc { get; init; }
     public string FailReason { get; init; }
+    public decimal NewFeeAmount { get; init; }
 }
