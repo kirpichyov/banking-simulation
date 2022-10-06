@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microservices.Application.Contracts;
 using Microsoft.Extensions.Logging;
 
@@ -24,7 +25,10 @@ public sealed class WebhookSender : IWebhookSender
         var httpClient = _httpClientFactory.CreateClient();
         HttpRequestMessage? request;
 
-        var requestJson = JsonSerializer.Serialize(data);
+        var requestJson = JsonSerializer.Serialize(data, new JsonSerializerOptions()
+        {
+            Converters = { new JsonStringEnumConverter() }
+        });
 
         try
         {
